@@ -1,0 +1,3 @@
+/home/roit/aws/slambook/ch2/sigle/CMakeFiles/rebuild_cache.dir
+/home/roit/aws/slambook/ch2/sigle/CMakeFiles/myHelloSLAM.dir
+/home/roit/aws/slambook/ch2/sigle/CMakeFiles/edit_cache.dir

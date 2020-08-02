@@ -17,27 +17,39 @@ int main ( int argc, char** argv )
     Eigen::Matrix3d rotation_matrix = Eigen::Matrix3d::Identity();
     // 旋转向量使用 AngleAxis, 它底层不直接是Matrix，但运算可以当作矩阵（因为重载了运算符）
     Eigen::AngleAxisd rotation_vector ( M_PI/4, Eigen::Vector3d ( 0,0,1 ) );     //沿 Z 轴旋转 45 度
-    cout .precision(3);
-    cout<<"rotation matrix =\n"<<rotation_vector.matrix() <<endl;                //用matrix()转换成矩阵
+    cout.precision(3);//规定输出精度 
+
+
+//旋转矩阵
+    //用matrix()转换成矩阵
+    cout<<"rotation matrix =\n"<<rotation_vector.matrix() <<endl;                
+    
     // 也可以直接赋值
     rotation_matrix = rotation_vector.toRotationMatrix();
+    cout<<rotation_matrix<<endl<<endl;
+    
     // 用 AngleAxis 可以进行坐标变换
     Eigen::Vector3d v ( 1,0,0 );
     Eigen::Vector3d v_rotated = rotation_vector * v;
-    cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl;
+    cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl<<endl;
+    
     // 或者用旋转矩阵
     v_rotated = rotation_matrix * v;
-    cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl;
+    cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl<<endl;
 
     // 欧拉角: 可以将旋转矩阵直接转换成欧拉角
     Eigen::Vector3d euler_angles = rotation_matrix.eulerAngles ( 2,1,0 ); // ZYX顺序，即roll pitch yaw顺序
-    cout<<"yaw pitch roll = "<<euler_angles.transpose()<<endl;
+    cout<<"yaw pitch roll = "<<euler_angles.transpose()<<endl<<endl;
 
     // 欧氏变换矩阵使用 Eigen::Isometry
     Eigen::Isometry3d T=Eigen::Isometry3d::Identity();                // 虽然称为3d，实质上是4＊4的矩阵
-    T.rotate ( rotation_vector );                                     // 按照rotation_vector进行旋转
+    cout<< "befor rotate as rotation_vector"<<endl<<endl;
+    cout<<T.matrix()<<endl;
+    T.rotate ( rotation_vector );     // 按照rotation_vector进行旋转, 即沿着Z轴旋转45d
+    cout<< "after rotate"<<endl<<endl;
+    cout<<T.matrix()<<endl;
     T.pretranslate ( Eigen::Vector3d ( 1,3,4 ) );                     // 把平移向量设成(1,3,4)
-    cout << "Transform matrix = \n" << T.matrix() <<endl;
+    cout << "after Transform matrix = \n" << T.matrix() <<endl;
 
     // 用变换矩阵进行坐标变换
     Eigen::Vector3d v_transformed = T*v;                              // 相当于R*v+t

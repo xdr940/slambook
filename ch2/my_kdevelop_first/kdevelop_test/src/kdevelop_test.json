@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "kdevelop_test",
+        "Id": "kdevelop_test",
+        "Name": "kdevelop_test",
+        "ServiceTypes": [
+            "KDevelop/Plugin"
+        ]
+    },
+    "X-KDevelop-Category": "Global",
+    "X-KDevelop-Mode": "GUI"
+}

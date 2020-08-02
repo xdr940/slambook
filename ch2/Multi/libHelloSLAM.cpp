@@ -6,3 +6,7 @@ void printHello()
 {
     cout<<"Hello SLAM"<<endl;
 }
+
+void printHellow2(){
+    cout<<"ni hao"<<endl;
+}

@@ -1,0 +1,5 @@
+# KDebugSettings data file
+# Format:
+# logname<space>description
+
+kdevelop.plugin.kdevelop_test KDevelop plugin: kdevelop_test
